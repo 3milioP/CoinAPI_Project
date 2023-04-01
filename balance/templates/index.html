@@ -1,17 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECOIN</title>
-    <link rel="stylesheet" href="/static/css/flat-remix.css">
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
+{% block scripts%}
+<script src="/static/js/balance.js"></script>
+{% endblock scripts %}
 
-<body>
-    <h1 class="cabecera">Hola soy Emilio</h1>
-</body>
+{% block contenido %}
 
-</html>
+<h1>Movements</h1>
+
+<section class="seccion-movimientos">
+    <table class="paper">
+        <thead>
+            <tr>
+                <th class="titulo-tabla">Date</th>
+                <th class="titulo-tabla">From</th>
+                <th class="titulo-tabla numero">Quantity</th>
+                <th class="titulo-tabla">To</th>
+                <th class="titulo-tabla numero">Quantity</th>
+                <th class="titulo-tabla numero">Invest amount</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpo-tabla">
+            <!-- Aquí tenemos que cargar los movimientos que leamos desde la API -->
+        </tbody>
+    </table>
+</section>
+
+{% endblock contenido %}
