@@ -1,1 +1,34 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block scripts%}
+<script defer src="/static/js/form.js"></script>
+{% endblock scripts %}
+
+{% block contenido%}
+
+<form novalidate id="form-mov">
+    {{ form.csrf_token }}
+    {{ form.id }}
+    {{ form.date }}
+    {{ form.time }}
+
+    <div class="form-field">
+        {{ form.from_currency.label }}
+        {{ form.from_currency }}
+    </div>
+
+    <div class="form-field">
+        {{ form.from_quantity.label }}
+        {{ form.from_quantity }}
+    </div>
+
+    <div class="form-field">
+        {{ form.to_currency.label }}
+        {{ form.to_currency }}
+    </div>
+
+    <div class="actions">
+        {{ form.submit }}
+    </div>
+</form>
+{% endblock contenido %}

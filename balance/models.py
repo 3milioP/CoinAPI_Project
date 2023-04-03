@@ -73,7 +73,7 @@ class DBManager:
 
         return conexion, cursor
 
-    def desconect(self, conexion):
+    def disconnect(self, conexion):
         conexion.close()
 
     def consultWithParams(self, consult, params):
@@ -88,7 +88,7 @@ class DBManager:
             print(ex)
             conexion.rollback()
 
-        self.desconect(conexion)
+        self.disconnect(conexion)
         return result
 
     def delete(self, id):
