@@ -1,9 +1,10 @@
 from flask import render_template
 from . import app
 from .forms import MovementForm
+from .models import CriptoModel
 
 
-RUTA = app.config.get('RUTA')
+ROUTE = app.config.get('ROUTE')
 
 
 @app.route('/')
@@ -14,7 +15,8 @@ def home():
 @app.route('/purchase')
 def purchase():
     formulary = MovementForm()
-    return render_template('purchase.html', form=formulary)
+    exchange = CriptoModel
+    return render_template('purchase.html', form=formulary, ex=exchange)
 
 
 @app.route('/status')

@@ -31,7 +31,7 @@ class CriptoModel:
             self.change = exchange.get("rate")
         else:
             raise APIError(
-                f'Error {response.status_code} {response.reason} al consultar la API'
+                f'Error {response.status_code} {response.reason} in API consult'
             )
 
 

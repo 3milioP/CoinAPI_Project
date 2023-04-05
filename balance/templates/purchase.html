@@ -27,8 +27,23 @@
         {{ form.to_currency }}
     </div>
 
+    <div class="form-field">
+        {{ form.to_quantity.label }}
+        {{ form.to_quantity }}
+    </div>
+
+    <div class="form-field">
+        {{ form.u_price.label }}
+        {{ form.u_price }}
+    </div>
+
     <div class="actions">
         {{ form.submit }}
     </div>
 </form>
+
+<div>
+    <button id="calculate">Calculate</button>
+</div>
+
 {% endblock contenido %}
