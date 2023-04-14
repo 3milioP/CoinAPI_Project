@@ -25,6 +25,11 @@ nav {
     padding-left: 25px;
 }
 
+a.disabled {
+    pointer-events: none;
+    cursor: pointer;
+}
+
 nav a,
 nav a:active,
 nav a:focus,

@@ -1,3 +1,5 @@
+
+
 function loadMovements() {
 
   let queryParams = getQueryParams();
@@ -60,3 +62,9 @@ function getQueryParams() {
 }
 
 window.addEventListener('load', loadMovements);
+
+window.onload = function () {
+  balanceNav = document.getElementById('balance')
+  balanceNav.style.pointerEvents = "none"
+  balanceNav.style.color = "#999";
+}

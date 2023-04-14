@@ -59,7 +59,6 @@ def insert_movement():
 
             db = DBManager(ROUTE)
 
-            sql = 'INSERT INTO movements (date, time, from_currency, from_quantity, to_currency, to_quantity) VALUES (:date, :time, :from_currency, :from_quantity, :to_currency, :to_quantity)'
             params = request.json
 
             format_date = datetime.datetime.now().date()
@@ -68,7 +67,7 @@ def insert_movement():
             params['date'] = format_date
             params['time'] = format_time
 
-            isSuccess = db.consultWithParams(sql, params)
+            isSuccess = db.consultWithParams(insert_movements, params)
             if isSuccess:
                 status_code = 201
                 result = {
@@ -96,3 +95,11 @@ def insert_movement():
         }
 
     return jsonify(result), status_code
+
+
+@app.route('/api/v1/movements/status')
+def get_balance():
+    db = DBManager(ROUTE)
+    data = db.balance()
+
+    return jsonify(data)
