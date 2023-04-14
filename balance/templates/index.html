@@ -4,27 +4,27 @@
 <script src="/static/js/balance.js"></script>
 {% endblock scripts %}
 
-{% block contenido %}
+{% block content %}
 
-<h1>Movements</h1>
+<h1 class="tittle">Movements</h1>
 
-<section class="seccion-movimientos">
-    <table class="paper">
+<div class="table-container">
+    <table class=" table">
         <thead>
             <tr>
-                <th class="titulo-tabla">Date</th>
-                <th class="titulo-tabla">Time</th>
-                <th class="titulo-tabla numero">From</th>
-                <th class="titulo-tabla">Quantity</th>
-                <th class="titulo-tabla numero">To</th>
-                <th class="titulo-tabla numero">Quantity</th>
-                <th class="titulo-tabla numero">Unit Price</th>
+                <th class="content table th">Date</th>
+                <th class="content table th">Time</th>
+                <th class="content table th">From</th>
+                <th class="content table th">Quantity</th>
+                <th class="content table th">To</th>
+                <th class="content table th">Quantity</th>
+                <th class="content table th">Unit Price</th>
             </tr>
         </thead>
-        <tbody id="table-body">
-            <!-- Aquí tenemos que cargar los movimientos que leamos desde la API -->
+        <tbody id="table-container">
+
         </tbody>
     </table>
-</section>
+</div>
 
-{% endblock contenido %}
+{% endblock content %}

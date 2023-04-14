@@ -4,44 +4,49 @@
 <script defer src="/static/js/form.js"></script>
 {% endblock scripts %}
 
-{% block contenido%}
+{% block content%}
 
 <form novalidate id="form-mov">
     {{ form.csrf_token }}
     {{ form.id }}
 
-    <div class="form-field">
-        {{ form.from_currency.label }}
-        {{ form.from_currency }}
+
+    <div class="field is-grouped">
+        {{ form.from_currency.label(class_="label") }}
+        {{ form.from_currency(class_="select") }}
+
+        {{ form.to_currency.label(class_="label") }}
+        {{ form.to_currency(class_="select") }}
+
     </div>
 
-    <div class="form-field">
-        {{ form.from_quantity.label }}
-        {{ form.from_quantity }}
+    <div class="field">
+        {{ form.from_quantity.label(class_="label") }}
+        <div class="control">
+            <input class="select" id="from_quantity" name="from_quantity" required="" type="text" value=""
+                placeholder="amount">
+        </div>
     </div>
 
-    <div class="form-field">
-        {{ form.to_currency.label }}
-        {{ form.to_currency }}
-    </div>
+    <fieldset disabled>
+        <div class="field">
+            {{ form.to_quantity.label(class_="label") }}
+            {{ form.to_quantity }}
+        </div>
 
-    <div class="form-field">
-        {{ form.to_quantity.label }}
-        {{ form.to_quantity }}
-    </div>
+        <div class="field">
+            {{ form.u_price.label(class_="label") }}
+            {{ form.u_price }}
+        </div>
 
-    <div class="form-field">
-        {{ form.u_price.label }}
-        {{ form.u_price }}
-    </div>
-
+    </fieldset>
     <div class="actions">
-        {{ form.submit }}
+        {{ form.submit(class_="button is-large is-success is-rounded") }}
     </div>
 </form>
 
 <div>
-    <button id="calculate">Calculate</button>
+    <button class="button is-large is-success is-rounded" id="calculate">Calculate</button>
 </div>
 
-{% endblock contenido %}
+{% endblock content %}

@@ -42,7 +42,7 @@ function loadMovements() {
         html = 'NO MOVEMENTS'
       }
 
-      const table = document.querySelector('#table-body');
+      const table = document.querySelector('#table-container');
       table.innerHTML += html;
     })
     .catch((error) => console.log('ERROR: Data load failed', error));

@@ -4,19 +4,20 @@ from wtforms import FloatField, IntegerField, SelectField, SubmitField
 from wtforms.validators import DataRequired
 from wtforms.widgets import HiddenInput
 
+
 class MovementForm(FlaskForm):
 
     id = IntegerField(default=0, widget=HiddenInput())
     from_currency = SelectField(
-        'Currency', choices=COINS)
-    from_quantity = FloatField('Quantity', validators=[DataRequired(
+        'Choose', choices=COINS)
+    from_quantity = FloatField('Type amount', validators=[DataRequired(
         message="You must introduce a number")])
 
     to_currency = SelectField(
-        'Currency', choices=COINS)
+        'To', choices=COINS)
 
-    to_quantity = FloatField('to_quantity', render_kw={'readonly': True})
+    to_quantity = FloatField('Quantity', render_kw={'readonly': True})
 
-    u_price = FloatField('Unitary Price', render_kw={'readonly': True})
+    u_price = FloatField('Best price right now', render_kw={'readonly': True})
 
-    submit = SubmitField('Submit')
+    submit = SubmitField('submit')

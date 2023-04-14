@@ -4,22 +4,23 @@
 <script defer src="/static/js/status.js"></script>
 {% endblock scripts %}
 
-{% block contenido%}
+{% block content%}
 
-<h1>Inversion Status</h1>
+<h1 class="tittle">Inversion Status</h1>
 
-<section class="seccion-movimientos">
-    <table class="paper">
+<div class="table-container">
+    <table>
         <thead>
             <tr>
-                <th class="titulo-tabla numero">Invested</th>
-                <th class="titulo-tabla numero">Actual Value</th>
+                <th class="content-table-status">Invested</th>
+                <th class="content-table-status">Actual Value</th>
             </tr>
         </thead>
         <tbody id="inv-status">
-            <!-- Aquí tenemos que cargar los movimientos que leamos desde la API -->
+
         </tbody>
     </table>
-</section>
+</div>
 
-{% endblock contenido%}
+
+{% endblock content%}
