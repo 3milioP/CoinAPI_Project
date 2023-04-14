@@ -13,6 +13,13 @@ function loadMovements() {
   fetch(url)
     .then(response => response.json())
     .then(response => {
+
+      const options = {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3
+      };
+      const formatter = new Intl.NumberFormat('es-ES', options);
+
       const movements = response.results;
       let html = '';
       if (movements && movements.length > 0) {
@@ -24,10 +31,10 @@ function loadMovements() {
                     <td>${mov.date}</td>
                     <td>${mov.time}</td>
                     <td>${mov.from_currency}</td>
-                    <td>${mov.from_quantity}</td>
+                    <td>${formatter.format(mov.from_quantity)}</td>
                     <td>${mov.to_currency}</td>
-                    <td>${mov.to_quantity}</td>
-                    <td>${mov.u_price}</td>
+                    <td>${formatter.format(mov.to_quantity)}</td>
+                    <td>${formatter.format(mov.u_price)}</td>
                   </tr>
                 `;
         }

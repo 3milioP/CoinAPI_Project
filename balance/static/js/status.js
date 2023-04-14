@@ -1,10 +1,9 @@
 function loadMovements() {
-    fetch('http://localhost:5000/api/v1/movements/status')
+    fetch('http://localhost:5000/api/v1/movements/data')
         .then(response => response.json())
         .then(response => {
             const invStatus = response.total_euros_invested
             const actualValue = response.euro_wallet_amount
-            console.log(invStatus, actualValue)
 
             let html = '';
             if (invStatus) {

@@ -1,6 +1,9 @@
 console.log('--- Iniciamos ejecución de form.js ---');
 
-const APIKEY = 'E6A881EC-A489-4A17-BD9D-354A4625D54A'
+// const APIKEY = 'E6A881EC-A489-4A17-BD9D-354A4625D54A'
+// const APIKEY = 'A64FF26D-9DBE-472B-9AEA-BE1E93B6C932'
+const APIKEY = '4AD6E075-1F3D-4CB0-8309-76741E5D4BA2'
+
 
 const form = document.getElementById('form-mov');
 const calculate = document.getElementById('calculate')
@@ -11,42 +14,63 @@ calculate.addEventListener('click', calculateForm);
 function calculateForm() {
 
     let fromCurrency = document.getElementById("from_currency");
-    let origin = fromCurrency.options[fromCurrency.selectedIndex].value;
+    const origin = fromCurrency.options[fromCurrency.selectedIndex].value;
 
     let toCurrency = document.getElementById("to_currency");
-    let destiny = toCurrency.options[toCurrency.selectedIndex].value;
+    const destiny = toCurrency.options[toCurrency.selectedIndex].value;
 
     let fromQuantity = document.getElementById("from_quantity");
-    let qtt = fromQuantity.value;
+    const qtt = fromQuantity.value;
 
     if (origin != destiny) {
-        fetch(`https://rest.coinapi.io/v1/exchangerate/${origin}/${destiny}`, {
-            method: "GET",
-            headers: {
-                'X-CoinAPI-Key': APIKEY
-            }
-        })
-            .then(response => response.json())
-            .then(response => {
-                const options = {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                };
-                const formatter = new Intl.NumberFormat('es-ES', options);
 
-                const exRate = response.rate
+        Promise.all([
+            fetch(`https://rest.coinapi.io/v1/exchangerate/${origin}/${destiny}`, {
+                method: "GET",
+                headers: {
+                    'X-CoinAPI-Key': APIKEY
+                }
+            }),
+            fetch('/api/v1/movements/data')
+        ])
+            .then(responses => {
+                const data = [];
 
-                let toQuantity = document.getElementById("to_quantity")
-                toQuantity.value = formatter.format(exRate * qtt);
+                for (let i = 0; i < responses.length; i++) {
+                    data.push(responses[i].json());
+                }
 
-                let uPrice = document.getElementById("u_price");
-                uPrice.value = formatter.format(exRate)
+                return Promise.all(data);
             })
+            .then(data => {
+                const exchange = data[0];
+                const server_data = data[1];
+
+                if (server_data.cryptos.includes(origin) || origin === 'EUR') {
+                    if (server_data.crypto_balance[origin] > qtt || origin === 'EUR') {
+                        const exRate = exchange.rate
+                        let toQuantity = document.getElementById("to_quantity")
+                        toQuantity.value = exRate * qtt;
+
+                        let uPrice = document.getElementById("u_price");
+                        uPrice.value = exRate;
+                    } else {
+                        alert("You have not enough amount")
+                    }
+
+                } else {
+                    alert("You have not this crypto (YET...)")
+                }
+            }).catch(error => {
+                console.error('ERROR!', error);
+            });
+
     } else {
         alert('Currency FROM must be different of currency TO')
     }
 
 }
+
 function sendForm(event) {
     console.log('Form sended', event);
     event.preventDefault();

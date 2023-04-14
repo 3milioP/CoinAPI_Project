@@ -3,6 +3,7 @@ from config import DEFAULT_PAG, PAG_SIZE
 import sqlite3
 import requests
 
+
 class DBManager:
     def __init__(self, route):
         self.route = route
@@ -63,12 +64,16 @@ class DBManager:
         conexion = sqlite3.connect(self.route)
         cursor = conexion.cursor()
 
+        crypto_value = 0
         moves_in = {}
         moves_out = {}
+        crypto_balance = {}
+        actual_crypto_value = {}
         moves = [moves_in, moves_out]
 
         sql_calls = ["SELECT SUM(from_quantity) FROM movements WHERE from_currency=?",
                      "SELECT SUM(to_quantity) FROM movements WHERE to_currency =?"]
+        # --------------- DATA BASE CALL------------------
         index = 0
         for call in sql_calls:
             for coin in COINS:
@@ -79,50 +84,58 @@ class DBManager:
                     move[coin[0]] = data[0]
             index += 1
 
-        crypto_balance = {}
-        eur_balance = moves_out.get('EUR') - moves_in.get('EUR')
+        if moves_in.get('EUR') != None:
+            try:
+                eur_balance = moves_out.get('EUR') - moves_in.get('EUR')
+            except TypeError:
+                eur_balance = moves_in.get('EUR')
+        else:
+            eur_balance = 0
 
         for key in moves_out:
             if key != 'EUR':
                 try:
                     balance = moves_out.get(key) - moves_in.get(key)
-
-                except:
+                except TypeError:
                     balance = moves_out.get(key)
-                crypto_balance[key] = balance
 
+                crypto_balance[key] = balance
+        # ------------- COIN API CALL -----------------
         url = 'https://rest.coinapi.io/v1/exchangerate/EUR?invert=false'
         headers = {'X-CoinAPI-Key': APIKEY}
         response = requests.get(url, headers=headers)
         data = response.json()
-        data_rates = data['rates']
 
-        actual_crypto_value = {}
+        data_rates = data['rates']
+        cryptos = crypto_balance.keys()
+
         i = 0
 
         while i < len(data_rates):
-            for crypto in crypto_balance.keys():
+            for crypto in cryptos:
                 if data_rates[i]['asset_id_quote'] == crypto:
 
-                    actual_exchante_rate = data_rates[i]['rate']
+                    actual_exchange_rate = data_rates[i]['rate']
                     wallet_amount = crypto_balance[crypto]
 
-                    actual_value = wallet_amount/actual_exchante_rate
+                    actual_value = wallet_amount/actual_exchange_rate
 
                     actual_crypto_value[crypto] = actual_value
             i += 1
 
-        actual_wallet_amount = 0
         for value in actual_crypto_value.values():
-            actual_wallet_amount += value
+            crypto_value += value
+
+        total_euros_invested = moves_in.get('EUR')
+        if total_euros_invested == None:
+            total_euros_invested = 0
+
+        actual_wallet_value = total_euros_invested + eur_balance + crypto_value
 
         all_data = {
-            "total_invested": moves_in,
-            "total_withdrawed": moves_out,
-            "total_euros_invested": moves_in.get('EUR'),
-            "euro_balance": eur_balance,
+            "total_euros_invested": total_euros_invested,
             "crypto_balance": crypto_balance,
-            "valores_actuales_de_mis_cripto": actual_crypto_value,
-            "euro_wallet_amount": actual_wallet_amount
+            "cryptos": list(cryptos),
+            "euro_wallet_amount": actual_wallet_value,
         }
         return all_data
