@@ -6,25 +6,33 @@
 
 {% block content %}
 
-<h1 class="tittle">Movements</h1>
+<body>
+    <div class='container has-text-centered'>
+        <div class='columns is-mobile is-centered'>
+            <div class='column is-8'>
+                <div>
+                    <h1 class='title'>Movements</h1>
+                    <hr>
+                </div>
+                <table class='table is-bordered has-background-primary'>
+                    <thead>
+                        <tr>
+                            <th class="content table th">Date</th>
+                            <th class="content table th">Time</th>
+                            <th class="content table th">From</th>
+                            <th class="content table th">Quantity</th>
+                            <th class="content table th">To</th>
+                            <th class="content table th">Quantity</th>
+                            <th class="content table th">Unit Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-container">
 
-<div class="table-container">
-    <table class=" table">
-        <thead>
-            <tr>
-                <th class="content table th">Date</th>
-                <th class="content table th">Time</th>
-                <th class="content table th">From</th>
-                <th class="content table th">Quantity</th>
-                <th class="content table th">To</th>
-                <th class="content table th">Quantity</th>
-                <th class="content table th">Unit Price</th>
-            </tr>
-        </thead>
-        <tbody id="table-container">
-
-        </tbody>
-    </table>
-</div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
 
 {% endblock content %}

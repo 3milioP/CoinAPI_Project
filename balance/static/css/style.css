@@ -122,8 +122,12 @@
     color: #fff;
 }
 
-.table-container {
-    margin-left: 350px;
+.navbar-start {
+    color: #fff;
+}
+
+.table {
+    margin-left: 45px;
 }
 
 .tittle {
