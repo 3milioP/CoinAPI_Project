@@ -34,7 +34,7 @@ def list_movements():
         else:
             result = {
                 'status': 'error',
-                'message': f'There are no movements in the system'
+                'message': 'There are no movements in the system'
             }
             status_code = 404
 

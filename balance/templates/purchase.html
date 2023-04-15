@@ -20,33 +20,33 @@
 
     </div>
 
-    <div class="field">
+    <div class="field has-addons">
         {{ form.from_quantity.label(class_="label") }}
         <div class="control">
-            <input class="select" id="from_quantity" name="from_quantity" required="" type="text" value=""
+            <input class="input" id="from_quantity" name="from_quantity" required="" type="text" value=""
                 placeholder="amount">
         </div>
+        <div class="control">
+            <a class="secundary-button" id="calculate">
+                Calculate
+            </a>
+        </div>
     </div>
 
-    <fieldset disabled>
-        <div class="field">
-            {{ form.to_quantity.label(class_="label") }}
-            {{ form.to_quantity }}
-        </div>
-
-        <div class="field">
-            {{ form.u_price.label(class_="label") }}
-            {{ form.u_price }}
-        </div>
-
-    </fieldset>
-    <div class="actions">
-        {{ form.submit(class_="button is-large is-success is-rounded") }}
+    <div class="field">
+        {{ form.to_quantity.label(class_="label") }}
+        {{ form.to_quantity }}
     </div>
+
+    <div class="field">
+        {{ form.u_price.label(class_="label") }}
+        {{ form.u_price }}
+    </div>
+
+    <div>
+        {{ form.submit(class_="main-button") }}
+    </div>
+
 </form>
-
-<div>
-    <button class="button is-large is-success is-rounded" id="calculate">Calculate</button>
-</div>
 
 {% endblock content %}

@@ -1,8 +1,6 @@
-console.log('--- Iniciamos ejecución de form.js ---');
-
-// const APIKEY = 'E6A881EC-A489-4A17-BD9D-354A4625D54A'
+const APIKEY = 'E6A881EC-A489-4A17-BD9D-354A4625D54A'
 // const APIKEY = 'A64FF26D-9DBE-472B-9AEA-BE1E93B6C932'
-const APIKEY = '4AD6E075-1F3D-4CB0-8309-76741E5D4BA2'
+// const APIKEY = '4AD6E075-1F3D-4CB0-8309-76741E5D4BA2'
 
 
 const form = document.getElementById('form-mov');
@@ -86,7 +84,7 @@ function sendForm(event) {
     let url;
 
     operacion = 'POST';
-    url = 'http://127.0.0.1:5000//api/v1/movements';
+    url = 'http://127.0.0.1:5000/api/v1/movements';
 
     fetch(url, {
         method: operacion,

@@ -18,6 +18,6 @@ class MovementForm(FlaskForm):
 
     to_quantity = FloatField('Quantity', render_kw={'readonly': True})
 
-    u_price = FloatField('Best price right now', render_kw={'readonly': True})
+    u_price = FloatField('Best rate right now', render_kw={'readonly': True})
 
-    submit = SubmitField('submit')
+    submit = SubmitField('Submit')

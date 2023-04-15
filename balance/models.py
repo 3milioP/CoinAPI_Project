@@ -63,7 +63,6 @@ class DBManager:
     def balance(self):
         conexion = sqlite3.connect(self.route)
         cursor = conexion.cursor()
-
         crypto_value = 0
         moves_in = {}
         moves_out = {}
@@ -73,16 +72,19 @@ class DBManager:
 
         sql_calls = ["SELECT SUM(from_quantity) FROM movements WHERE from_currency=?",
                      "SELECT SUM(to_quantity) FROM movements WHERE to_currency =?"]
-        # --------------- DATA BASE CALL------------------
+        # --------------- DATABASE CALL------------------
         index = 0
         for call in sql_calls:
             for coin in COINS:
+
                 cursor.execute(call, (coin[0],))
                 data = cursor.fetchone()
                 move = moves[index]
-                if data[0]:
+
+                if data[0] != None:
                     move[coin[0]] = data[0]
             index += 1
+        conexion.close()
 
         if moves_in.get('EUR') != None:
             try:
@@ -100,7 +102,7 @@ class DBManager:
                     balance = moves_out.get(key)
 
                 crypto_balance[key] = balance
-        # ------------- COIN API CALL -----------------
+        # ------------- COINAPI CALL -----------------
         url = 'https://rest.coinapi.io/v1/exchangerate/EUR?invert=false'
         headers = {'X-CoinAPI-Key': APIKEY}
         response = requests.get(url, headers=headers)
