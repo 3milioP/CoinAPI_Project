@@ -1,7 +1,4 @@
-const APIKEY = 'E6A881EC-A489-4A17-BD9D-354A4625D54A'
-// const APIKEY = 'A64FF26D-9DBE-472B-9AEA-BE1E93B6C932'
-// const APIKEY = '4AD6E075-1F3D-4CB0-8309-76741E5D4BA2'
-
+const APIKEY = 'A64FF26D-9DBE-472B-9AEA-BE1E93B6C932'
 
 const form = document.getElementById('form-mov');
 const calculate = document.getElementById('calculate')

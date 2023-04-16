@@ -126,8 +126,13 @@
     color: #fff;
 }
 
-.table {
-    margin-left: 45px;
+.navbar-item {
+    color: #fff
+}
+
+.navbar-dropdown {
+    color: #00c4a7;
+    background-color: #006666;
 }
 
 .tittle {
@@ -136,14 +141,21 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-.content-table-status {
-    margin: 50rem;
-}
-
 .field {
-    margin-left: 30rem;
+    margin-left: 444px;
+    justify-content: center;
 }
 
-.center {
-    margin-left: 7rem;
+.pagination-list {
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.select {
+    margin-right: 0rem;
+}
+
+.card-header-title {
+    justify-content: center;
+    color: #00c4a7
 }

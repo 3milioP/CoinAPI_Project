@@ -90,7 +90,7 @@ class DBManager:
             try:
                 eur_balance = moves_out.get('EUR') - moves_in.get('EUR')
             except TypeError:
-                eur_balance = moves_in.get('EUR')
+                eur_balance = -moves_in.get('EUR')
         else:
             eur_balance = 0
 
@@ -139,5 +139,6 @@ class DBManager:
             "crypto_balance": crypto_balance,
             "cryptos": list(cryptos),
             "euro_wallet_amount": actual_wallet_value,
+            "withdrawed": moves_out.get('EUR')
         }
         return all_data

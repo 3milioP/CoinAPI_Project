@@ -4,13 +4,19 @@ function loadMovements() {
         .then(response => {
             const invStatus = response.total_euros_invested
             const actualValue = response.euro_wallet_amount
-
+            const withdrawed = response.withdrawed
+            const options = {
+                minimumFractionDigits: 3,
+                maximumFractionDigits: 3
+            };
+            const formatter = new Intl.NumberFormat('es-ES', options);
             let html = '';
             if (invStatus) {
                 html += `
                     <tr>
-                    <td>${invStatus}</td>
-                    <td>${actualValue}</td>
+                    <td>${formatter.format(invStatus)}</td>
+                    <td>${formatter.format(actualValue)}</td>
+                    <td>${formatter.format(withdrawed)}</td>
                     </tr>
                     `;
             } else {

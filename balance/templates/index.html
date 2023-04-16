@@ -14,7 +14,7 @@
                     <h1 class='title'>Movements</h1>
                     <hr>
                 </div>
-                <table class='table is-bordered has-background-primary'>
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-background-primary">
                     <thead>
                         <tr>
                             <th class="content table th">Date</th>
@@ -35,4 +35,23 @@
     </div>
 </body>
 
+<nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+    <ul class="pagination-list">
+        <li>
+            <a class="pagination-link" href="http://127.0.0.1:5000/?p=1&r=5" aria-label="Goto page 1">1</a>
+        </li>
+        <li>
+            <a class="pagination-link" href="http://127.0.0.1:5000/?p=2&r=5" aria-label="Goto page 2">2</a>
+        </li>
+        <li>
+            <a class="pagination-link" href="http://127.0.0.1:5000/?p=3&r=5" aria-label="Goto page 3">3</a>
+        </li>
+        <li>
+            <a class="pagination-link" href="http://127.0.0.1:5000/?p=4&r=5" aria-label="Goto page 4">4</a>
+        </li>
+        <li>
+            <a class="pagination-link" href="http://127.0.0.1:5000/?p=5&r=5" aria-label="Goto page 5">5</a>
+        </li>
+    </ul>
+</nav>
 {% endblock content %}

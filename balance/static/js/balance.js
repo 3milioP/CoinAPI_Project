@@ -1,5 +1,3 @@
-
-
 function loadMovements() {
 
   let queryParams = getQueryParams();

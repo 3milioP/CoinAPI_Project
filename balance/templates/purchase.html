@@ -13,10 +13,14 @@
 
     <div class="field is-grouped">
         {{ form.from_currency.label(class_="label") }}
-        {{ form.from_currency(class_="select") }}
+        <div class="select is-rounded">
+            {{ form.from_currency(class_="select") }}
+        </div>
 
         {{ form.to_currency.label(class_="label") }}
-        {{ form.to_currency(class_="select") }}
+        <div class="select is-rounded">
+            {{ form.to_currency(class_="select") }}
+        </div>
 
     </div>
 
